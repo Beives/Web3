@@ -9,11 +9,66 @@
           <th scope="col">Garancia állapota</th>
           <th scope="col">Autó életkora</th>
           <th scope="col">Szervíz kezdete</th>
+          <th scope="col">Szervíz vége</th>
+          <th scope="col">Szervíz befejezése</th>
+          <th scope="col">Módosítás</th>
           <th scope="col">Törlés</th>
         </tr>
       </thead>
-      <tbody >
-          
+      <tbody>
+          @foreach ($szervizkonyvek as $konyv)
+              <tr>
+                <td>{{$konyv->nev}}</td>
+                <td>{{$konyv->marka}} {{$konyv->tipus}}</td>
+
+                <td>
+                  @if ($konyv->garancialis == 0)
+                      Nem garanciális
+                  @else
+                      Garanciális
+                  @endif
+                </td>
+
+                <td>{{$konyv->kategoria}}</td>
+                <td>{{$konyv->szerviz_kezdete}}</td>
+
+                <td>
+                  @if ($konyv->szerviz_vege == null)
+                      Szervíz alatt
+                  @else
+                      $konyv->szerviz_vege
+                  @endif
+                </td>
+
+                <td>
+                  @if ($konyv->szerviz_vege == null)
+                    <form id="EndService">
+                      @csrf
+                      <input type="hidden" name="hiddenEndId" value="{{$konyv->id}}">
+                      <button type="submit" class="btn btn-success">Befejezés</button>
+                    </form>
+                  @else
+                      Már befejezve
+                  @endif
+                </td>
+
+                <td>
+                  <form id="Modositas">
+                    @csrf
+                    <input type="hidden" name="hiddenModositasId" value="{{$konyv->id}}">
+                    <button type="submit" class="btn btn-warning">Módosítás</button>
+                  </form>
+                </td>
+
+                <td>
+                  <form id="Torles">
+                    @csrf
+                    <input type="hidden" name="hiddenTorlessId" value="{{$konyv->id}}">
+                    <button type="submit" class="btn btn-danger">Törlés</button>
+                  </form>
+                </td>
+              </tr>
+          @endforeach
       </tbody>
 </table>
 @endsection

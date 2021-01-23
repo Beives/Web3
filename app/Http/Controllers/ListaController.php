@@ -10,6 +10,14 @@ class ListaController extends Controller
 {
     public function index()
     {
-        return view('lista');
+        $szervizkonyvek = DB::table('szervizkonyv')
+        ->join('auto','szervizkonyv.auto','=','auto.id')
+        ->join('auto_eletkor', 'auto.kor','=','auto_eletkor.id')
+        ->join('user_cars','auto.id','=','user_cars.auto')
+        ->join('users', 'user_cars.user','=','users.id')
+        ->select('szervizkonyv.id','users.nev','auto.marka','auto.tipus','szervizkonyv.garancialis','auto_eletkor.kategoria','szervizkonyv.szerviz_kezdete','szervizkonyv.szerviz_vege')
+        ->get();
+
+        return view('lista',compact('szervizkonyvek'));
     }
 }
