@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Auto;
 
-class AutoEletkor extends Model
+class Auto_eletkor extends Model
 {
     public $table = "auto_eletkor";
     use HasFactory;

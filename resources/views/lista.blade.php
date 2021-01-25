@@ -36,13 +36,13 @@
                   @if ($konyv->szerviz_vege == null)
                       Szervíz alatt
                   @else
-                      $konyv->szerviz_vege
+                      {{$konyv->szerviz_vege}}
                   @endif
                 </td>
 
                 <td>
                   @if ($konyv->szerviz_vege == null)
-                    <form id="EndService">
+                    <form action="{{action('App\Http\Controllers\ListaController@szerviz_befejezes',$konyv->id)}}" method="POST">
                       @csrf
                       <input type="hidden" name="hiddenEndId" value="{{$konyv->id}}">
                       <button type="submit" class="btn btn-success">Befejezés</button>
@@ -61,9 +61,9 @@
                 </td>
 
                 <td>
-                  <form id="Torles">
+                  <form action="{{action('App\Http\Controllers\ListaController@destroy',$konyv->id)}}" method="POST">
+                    @method('DELETE')
                     @csrf
-                    <input type="hidden" name="hiddenTorlessId" value="{{$konyv->id}}">
                     <button type="submit" class="btn btn-danger">Törlés</button>
                   </form>
                 </td>

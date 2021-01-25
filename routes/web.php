@@ -20,3 +20,5 @@ Route::post('/hozzaad', [HozzaadController::class, 'store']);
 
 Route::get('/', [ListaController::class, 'index']) -> name('lista');
 Route::post('/', [ListaController::class, 'store']);
+Route::delete('/{deleteId}',[ListaController::class, 'destroy']);
+Route::post('/{endId}', [ListaController::class, 'szerviz_befejezes']);

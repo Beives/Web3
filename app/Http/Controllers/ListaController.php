@@ -20,4 +20,12 @@ class ListaController extends Controller
 
         return view('lista',compact('szervizkonyvek'));
     }
+    public function destroy($id){
+        $konyv = Szervizkonyv::find($id);
+        $konyv->delete();
+        return redirect()->route('lista');
+    }
+    public function szerviz_befejezes($id){
+        DB::table('szervizkonyv')->where('id',$id)->update(['szerviz_vege' => Carbon::now()]);
+    }
 }
