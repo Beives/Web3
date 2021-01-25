@@ -26,10 +26,10 @@
 
                 <div class="form-group">
                     <label for="autoMarka">Autó márka</label>
-                    <input type="text" name="name" placeholder="Márka"  class="form-control @error('autoMarka') border border-danger  @enderror"  value="{{old('autoMarka')}}">
+                    <input type="text" name="autoMarka" placeholder="Márka"  class="form-control @error('autoMarka') border border-danger  @enderror"  value="{{old('autoMarka')}}">
 
                     <label for="autoTipus">Autó típusa</label>
-                    <input type="text" name="name" placeholder="Típus"  class="form-control @error('autoTipus') border border-danger  @enderror"  value="{{old('autoTipus')}}">
+                    <input type="text" name="autoTipus" placeholder="Típus"  class="form-control @error('autoTipus') border border-danger  @enderror"  value="{{old('autoTipus')}}">
     
                     @error('auto')
                         <div>

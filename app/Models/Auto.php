@@ -11,6 +11,7 @@ use App\Models\User_cars;
 class Auto extends Model
 {
     public $table = "auto";
+    public $timestamps = false;
     use HasFactory;
 
     protected $fillable = [

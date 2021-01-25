@@ -33,31 +33,32 @@ class HozzaadController extends Controller
         ]);
         $autoId = (DB::table('auto')->max('id'))+1;
         $userId = (DB::table('users')->max('id'))+1;
-
-        if(!(User::where('nev','=',$request->name)->exist())){
+            
+        if(!(User::where('nev','=',$request->name)->exists())){
             User::create([
                 'nev' => $request -> name
             ]);
             }else{
-                $userId = User::where('nev','=',$request->name)->select('id')->get();
+                $userId = (User::select('id')->where('nev','=',$request->name)->first())->id;
             }
-
-        if (!(Auto::where('marka','=',$request->autoMarka)->where('tipus','=',$request->autoTipus)->where('kor','=',$request->radios)->exist() )) {
+            
+        if (!(Auto::where('marka','=',$request->autoMarka)->where('tipus','=',$request->autoTipus)->where('kor','=',$request->radios)->exists() )) {
             Auto::create([
                 'marka' => $request -> autoMarka,
                 'tipus' => $request -> autoTipus,
                 'kor' => $request -> radios
             ]);
         } else {
-            $autoId = Auto::where('marka','=',$request->autoMarka)->where('tipus','=',$request->autoTipus)->where('kor','=',$request->radios)->select('id')->get();
+            $autoId = (Auto::select('id')->where('marka','=',$request->autoMarka)->where('tipus','=',$request->autoTipus)->where('kor','=',$request->radios)->first())->id;
         }
+        
         Szervizkonyv::create([
             'garancialis' => $request -> garancia,
             'szerviz_kezdete' => $request -> szervizkezdet,
             'auto' => $autoId
         ]);
 
-        if(!(User_cars::where('auto','=',$autoId)->where('user','=',$userId)->exist())){
+        if(!(User_cars::where('auto','=',$autoId)->where('user','=',$userId)->exists())){
             User_cars::create([
                 'auto' => $autoId,
                 'user' => $userId

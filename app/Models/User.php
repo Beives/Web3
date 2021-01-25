@@ -9,6 +9,7 @@ use App\Models\User_cars;
 class User extends Model
 {
     public $table = "users";
+    public $timestamps = false;
     use HasFactory;
 
     protected $fillable = [

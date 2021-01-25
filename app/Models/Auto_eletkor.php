@@ -9,6 +9,7 @@ use App\Models\Auto;
 class Auto_eletkor extends Model
 {
     public $table = "auto_eletkor";
+    public $timestamps = false;
     use HasFactory;
 
     public function auto()
