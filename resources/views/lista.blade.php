@@ -10,7 +10,6 @@
           <th scope="col">Autó életkora</th>
           <th scope="col">Szervíz kezdete</th>
           <th scope="col">Szervíz vége</th>
-          <th scope="col">Szervíz befejezése</th>
           <th scope="col">Módosítás</th>
           <th scope="col">Törlés</th>
         </tr>
@@ -34,30 +33,18 @@
 
                 <td>
                   @if ($konyv->szerviz_vege == null)
-                      Szervíz alatt
-                  @else
-                      {{$konyv->szerviz_vege}}
-                  @endif
-                </td>
-
-                <td>
-                  @if ($konyv->szerviz_vege == null)
                     <form action="{{action('App\Http\Controllers\ListaController@szerviz_befejezes',$konyv->id)}}" method="POST">
                       @csrf
                       <input type="hidden" name="hiddenEndId" value="{{$konyv->id}}">
                       <button type="submit" class="btn btn-success">Befejezés</button>
                     </form>
                   @else
-                      Már befejezve
+                  {{$konyv->szerviz_vege}}
                   @endif
                 </td>
 
                 <td>
-                  <form id="Modositas">
-                    @csrf
-                    <input type="hidden" name="hiddenModositasId" value="{{$konyv->id}}">
-                    <button type="submit" class="btn btn-warning">Módosítás</button>
-                  </form>
+                  <a class="btn btn-warning" role="button" href="{{route('modositas',$konyv->id)}}">Módosítás</a>
                 </td>
 
                 <td>

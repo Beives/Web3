@@ -15,7 +15,7 @@ class CreateSzervizkonyvTable extends Migration
     {
         Schema::create('szervizkonyv', function (Blueprint $table) {
             $table->integer('id',9)->autoIncrement();
-            $table->tinyInteger('garancialis');
+            $table->tinyInteger('garancialis')->nullable();
             $table->timestamp('szerviz_kezdete')->nullable(false);
             $table->timestamp('szerviz_vege')->nullable();
         });

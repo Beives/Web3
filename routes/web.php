@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HozzaadController;
 use App\Http\Controllers\ListaController;
+use App\Http\Controllers\ModositasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,3 +23,6 @@ Route::get('/', [ListaController::class, 'index']) -> name('lista');
 Route::post('/', [ListaController::class, 'store']);
 Route::delete('/{deleteId}',[ListaController::class, 'destroy']);
 Route::post('/{endId}', [ListaController::class, 'szerviz_befejezes']);
+
+Route::get('/modositas/{modositId?}', [ModositasController::class,'index'])->name('modositas');
+Route::post('/modositas/{modositId?}', [ModositasController::class,'store']);

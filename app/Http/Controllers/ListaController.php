@@ -27,5 +27,6 @@ class ListaController extends Controller
     }
     public function szerviz_befejezes($id){
         DB::table('szervizkonyv')->where('id',$id)->update(['szerviz_vege' => Carbon::now()]);
+        return redirect()->route('lista');
     }
 }

@@ -41,9 +41,10 @@
                 <div class="form-check form-check-inline">
 
                     <div class="@error('garancia') border border-danger  @enderror">
-                        <input type="hidden" name="garancia" value="0">
-                        <input type="checkbox" class="form-check-input" name="garancia" value="1">
-                        <label class="form-check-label" for="garancia">Garanciális</label>
+                        <select name="garancialis">
+                            <option value="0">Nem garancialis</option>
+                            <option value="1">Garancialis</option>
+                        </select>
                     </div>
 
                     @error('garancia')
